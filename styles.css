@@ -1,0 +1,146 @@
+/* Reset all box sizing for ease to use css */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+h1,
+span {
+  font-size: 32px;
+  color: white;
+}
+
+/* Use css variable feature for robust code */
+:root {
+  --cell-size: 120px;
+  --xo-size: calc(var(--cell-size) * 0.8);
+  --xo-color: black;
+  --xo-color-hover: lightgrey;
+}
+
+body {
+  margin: 0;
+}
+
+.root {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.root .cell:not(.x):not(.o):hover::before,
+.root:not(.o) .cell:not(.x):not(.o):hover::after {
+  background-color: var(--xo-color-hover) !important;
+}
+
+/* board styles */
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-color: white;
+  border: 1px solid var(--xo-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:last-child {
+  border-bottom: none;
+}
+
+/* X styles */
+
+.cell.x::before,
+.cell.x::after,
+.root.x .cell:not(.x):not(.o):hover::before,
+.root.x .cell:not(.x):not(.o):hover::after {
+  content: '';
+  width: calc(var(--xo-size) * 0.15);
+  height: var(--xo-size);
+  background-color: black;
+
+  position: absolute;
+}
+
+.cell.x::before,
+.root.x .cell:not(.x):not(.o):hover::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after,
+.root.x .cell:not(.x):not(.o):hover::after {
+  transform: rotate(-45deg);
+}
+
+/* O styles */
+
+.cell.o::before,
+.cell.o::after,
+.root.o .cell:not(.x):not(.o):hover::before,
+.root.o .cell:not(.x):not(.o):hover::after {
+  content: '';
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.cell.o::before,
+.root.o .cell:not(.x):not(.o):hover::before {
+  width: var(--xo-size);
+  height: var(--xo-size);
+}
+
+.cell.o::after,
+.root.o .cell:not(.x):not(.o):hover::after {
+  width: calc(var(--xo-size) * 0.7);
+  height: calc(var(--xo-size) * 0.7);
+  background-color: white;
+}
+
+.message {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.message.show {
+  display: flex;
+}
