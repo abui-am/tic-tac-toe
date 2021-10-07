@@ -6,23 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Tic tac toe</title>
   </head>
   <body>
-    <div class="root" id="board">
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
-      <div class="cell" data-cell></div>
+    <div>
+
+    <div class="mb-sm">
+      <p style="text-align:center" id="turn-message">
+
+      </p>
     </div>
+    <div class="root" id="board">
+    </div>
+
+    </div>
+    <div class="message show" data-message-start>
+     <div class="paper">
+      <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;" class="mb-sm">  
+        <label class="mb-sm">
+          Input board size
+        </label>
+      <input id="boardSizeInput" />
+    </div>
+    <button id="startBtn" class="full-width">Start</button>
+    </div>
+    </div>
+    
     <div class="message" data-message>
-      <h1 data-message-text>X Win</h1>
-      <button id="restartBtn">Restart</button>
+      <div class="paper">
+        <h1 data-message-text>X Win</h1>
+        <button id="restartBtn">Restart</button>
+      </div>
     </div>
   </body>
 </html>
